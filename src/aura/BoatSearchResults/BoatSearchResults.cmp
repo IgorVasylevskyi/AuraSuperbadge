@@ -1,5 +1,30 @@
-<aura:component description="BoatSearchResults">
+<aura:component description="BoatSearchResults" controller="BoatSearchResults"
+                implements="flexipage:availableForAllPageTypes" access="global">
 
+    <aura:handler event="c:searchBoatsEvent" action="{!c.search}"/>
+    <aura:attribute name="boats" type="Boat__c[]"/>
+    <aura:attribute name="boatsNotEmpty" type="boolean" default="true"/>
+
+    <aura:if isTrue="{!v.boatsNotEmpty}">
+
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{!v.boats}" var="boat">
+                <lightning:layoutItem size="3" padding="around-small">
+                    <c:BoatTile boat="{!boat}"/>
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+
+        <aura:set attribute="else">
+            <lightning:layout horizontalAlign="center" verticalAlign="center">
+                <lightning:layoutItem padding="around-medium">
+                    <div class="slds-align_absolute-center slds-text-heading_medium">
+                        No boats found
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:set>
+    </aura:if>
 
 
 </aura:component>

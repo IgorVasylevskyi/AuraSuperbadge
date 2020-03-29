@@ -30,5 +30,17 @@
         }
 
         createBoat.fire();
+    },
+
+    searchBoats: function (component, event, helper) {
+
+        var boatTypeId = component.find("selectBoatType").get("v.value");
+
+        var searchBoatsEvent = $A.get("e.c:searchBoatsEvent");
+
+        searchBoatsEvent.setParams({
+           "boatTypeId": boatTypeId
+        });
+        searchBoatsEvent.fire();
     }
 });

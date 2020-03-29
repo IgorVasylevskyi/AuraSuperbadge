@@ -1,0 +1,9 @@
+<!--
+ - Created by Igor on 29.03.2020.
+ -->
+
+<aura:event type="APPLICATION" description="searchBoatsEvent">
+
+    <aura:attribute name="boatTypeId" type="String"/>
+
+</aura:event>
