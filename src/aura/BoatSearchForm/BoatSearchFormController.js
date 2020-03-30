@@ -32,15 +32,16 @@
         createBoat.fire();
     },
 
-    searchBoats: function (component, event, helper) {
+    onFormSubmit: function (component, event, helper) {
 
         var boatTypeId = component.find("selectBoatType").get("v.value");
 
-        var searchBoatsEvent = $A.get("e.c:searchBoatsEvent");
+        var formSubmitEvent = component.getEvent("formSubmit");
 
-        searchBoatsEvent.setParams({
-           "boatTypeId": boatTypeId
+        formSubmitEvent.setParams({
+           "formData":
+               {"boatTypeId" : boatTypeId}
         });
-        searchBoatsEvent.fire();
+        formSubmitEvent.fire();
     }
 });
