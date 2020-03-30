@@ -9,9 +9,6 @@
 
         var boatSearchResultsCmp = component.find("results");
 
-        console.log('BoatSearchResults: ' + boatSearchResultsCmp);
-
         var result = boatSearchResultsCmp.search(boatTypeId);
-
     }
 });

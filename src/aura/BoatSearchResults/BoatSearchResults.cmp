@@ -2,17 +2,18 @@
                 implements="flexipage:availableForAllPageTypes" access="global">
 
     <aura:handler event="c:searchBoatsEvent" action="{!c.search}"/>
+    <aura:handler name="boatSelect" event="c:BoatSelect" action="{!c.onBoatSelect}"/>
     <aura:attribute name="boats" type="Boat__c[]"/>
     <aura:attribute name="boatsNotEmpty" type="boolean" default="true"/>
-
-    <aura:attribute name="boatTypeId" type="string"/>
+    <aura:attribute name="boatTypeId" type="String"/>
+    <aura:attribute name="selectedBoatId" type="String"/>
 
     <aura:if isTrue="{!v.boatsNotEmpty}">
 
         <lightning:layout multipleRows="true">
             <aura:iteration items="{!v.boats}" var="boat">
                 <lightning:layoutItem size="3" padding="around-small">
-                    <c:BoatTile boat="{!boat}"/>
+                    <c:BoatTile boat="{!boat}" selected="{!v.selectedBoatId == boat.Id ? true : false}"/>
                 </lightning:layoutItem>
             </aura:iteration>
         </lightning:layout>
