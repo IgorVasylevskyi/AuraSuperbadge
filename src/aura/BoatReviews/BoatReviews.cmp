@@ -25,14 +25,14 @@
 
         <div class="slds-feed">
             <ul class="slds-feed__list">
-                <aura:iteration var="review" items="{!v.boatReviews}">
+                <aura:iteration var="boatReview" items="{!v.boatReviews}">
                     <li class="slds-feed__item">
 
                         <article class="slds-post">
                             <header class="slds-post__header slds-media">
                                 <div class="slds-media__figure">
                                     <div class="slds-avatar slds-avatar--circle slds-avatar--medium">
-                                        <img src="{!review.CreatedBy.SmallPhotoUrl}"/>
+                                        <img src="{!boatReview.CreatedBy.SmallPhotoUrl}"/>
                                     </div>
                                 </div>
 
@@ -40,29 +40,30 @@
                                     <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
                                         <p>
                                             <a href="javascript:void(0);" onclick="{!c.onUserInfoClick}"
-                                              data-userid="{!review.CreatedBy.Id}">
-                                                {!review.CreatedBy.Name}
-                                            </a> - {!review.CreatedBy.CompanyName}
+                                              data-userid="{!boatReview.CreatedBy.Id}">
+                                                {!boatReview.CreatedBy.Name}
+                                            </a> - {!boatReview.CreatedBy.CompanyName}
                                         </p>
                                     </div>
                                     <p>
-                                        <lightning:formattedDateTime value="{!review.CreatedDate}"/>&nbsp;
-                                        <lightning:formattedDateTime value="{!review.CreatedDate}" hour="numeric"
+                                        <lightning:formattedDateTime value="{!boatReview.CreatedDate}"/>&nbsp;
+                                        <lightning:formattedDateTime value="{!boatReview.CreatedDate}" hour="numeric"
                                                                      minute="numeric" second="numeric"/>
                                     </p>
                                 </div>
                             </header>
                             <div class="slds-post__content slds-text-longform">
-                                <p>{!review.Name}</p>
-                                <lightning:formattedRichText value="{!review.Comment__c}"/>
+                                <p>{!boatReview.Name}</p>
+                                <lightning:formattedRichText value="{!boatReview.Comment__c}"/>
                             </div>
+
+                            <c:FiveStarRating readonly="true" value="{!boatReview.Rating__c}"/>
                         </article>
 
                     </li>
                 </aura:iteration>
             </ul>
         </div>
-
 
     </ui:scrollerWrapper>
 

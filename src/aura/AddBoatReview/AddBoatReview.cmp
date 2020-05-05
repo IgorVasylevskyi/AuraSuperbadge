@@ -12,7 +12,7 @@
 
 
     <force:recordData aura:id="service"
-                      fields="Id, Name, Comment__c, Boat__c"
+                      fields="Id, Name, Comment__c, Boat__c, Rating__c"
                       targetRecord="{!v.boatReviewRecord}"
                       targetFields="{!v.boatReview}"
                       targetError="{!v.recordError}"
@@ -28,6 +28,10 @@
             <lightning:layoutItem size="12" padding="around-small">
                 <lightning:inputRichText label="Description:" labelVisible="true" value="{!v.boatReview.Comment__c}"
                 disabledCategories="FORMAT_FONT"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12" padding="around-small">
+                <c:FiveStarRating value="{!v.boatReview.Rating__c}"/>
             </lightning:layoutItem>
 
         </lightning:layout>
