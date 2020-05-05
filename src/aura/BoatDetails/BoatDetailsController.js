@@ -10,10 +10,21 @@
 
     onRecordUpdated: function (component, event, helper) {
 
+        var reviews = component.find("reviews");
+
+        if (reviews){
+            reviews.refresh();
+        }
     },
 
     onBoatReviewAdded: function (component, event, helper) {
 
         component.find("tabs").set("v.selectedTabId", "boatreviewtab");
+
+        var reviews = component.find("reviews");
+
+        if (reviews){
+            reviews.refresh();
+        }
     }
 });

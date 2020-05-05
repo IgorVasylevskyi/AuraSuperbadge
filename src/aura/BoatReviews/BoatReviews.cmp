@@ -1,0 +1,69 @@
+<aura:component description="BoatReviews" implements="flexipage:availableForAllPageTypes"
+                access="global" controller="BoatReviews">
+
+    <aura:attribute name="boat" type="Boat__c" access="public"/>
+    <aura:attribute name="boatReviews" type="BoatReview__c[]" access="private"/>
+    <aura:attribute name="reviewsExists" type="boolean"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.boat}" action="{!c.doInit}"/>
+
+    <aura:method name="refresh" action="{!c.doInit}"/>
+
+    <ui:scrollerWrapper class="scroll">
+        <aura:if isTrue="{!v.boatReviews.length eq 0}">
+
+
+            <lightning:layout>
+                <lightning:layoutItem size="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small"
+                                      class="slds-align_absolute-center">
+                    <lightning:formattedText value="No Reviews Available"/>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:if>
+
+
+        <div class="slds-feed">
+            <ul class="slds-feed__list">
+                <aura:iteration var="review" items="{!v.boatReviews}">
+                    <li class="slds-feed__item">
+
+                        <article class="slds-post">
+                            <header class="slds-post__header slds-media">
+                                <div class="slds-media__figure">
+                                    <div class="slds-avatar slds-avatar--circle slds-avatar--medium">
+                                        <img src="{!review.CreatedBy.SmallPhotoUrl}"/>
+                                    </div>
+                                </div>
+
+                                <div class="slds-media__body">
+                                    <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                        <p>
+                                            <a href="javascript:void(0);" onclick="{!c.onUserInfoClick}"
+                                              data-userid="{!review.CreatedBy.Id}">
+                                                {!review.CreatedBy.Name}
+                                            </a> - {!review.CreatedBy.CompanyName}
+                                        </p>
+                                    </div>
+                                    <p>
+                                        <lightning:formattedDateTime value="{!review.CreatedDate}"/>&nbsp;
+                                        <lightning:formattedDateTime value="{!review.CreatedDate}" hour="numeric"
+                                                                     minute="numeric" second="numeric"/>
+                                    </p>
+                                </div>
+                            </header>
+                            <div class="slds-post__content slds-text-longform">
+                                <p>{!review.Name}</p>
+                                <lightning:formattedRichText value="{!review.Comment__c}"/>
+                            </div>
+                        </article>
+
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+
+
+    </ui:scrollerWrapper>
+
+</aura:component>
