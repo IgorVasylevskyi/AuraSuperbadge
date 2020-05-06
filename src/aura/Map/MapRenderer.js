@@ -18,7 +18,8 @@
                 var mapElement = component.find("map").getElement();
                 component.map = L.map(mapElement, {zoomControl: true}).setView([42.356045, -71.085650], 13);
                 component.map.scrollWheelZoom.disable();
-                window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles © Esri'}).addTo(component.map);
+                window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+                    {attribution: 'Tiles © Esri'}).addTo(component.map);
             }
             
             

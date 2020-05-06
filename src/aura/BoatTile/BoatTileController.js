@@ -18,5 +18,14 @@
            "boat": boat
         });
         boatSelected.fire();
+
+        var plotMapMarkerEvt = $A.get("e.c:PlotMapMarker");
+        plotMapMarkerEvt.setParams({
+            'sObjectId': boatId,
+            'lat': boat.Geolocation__Latitude__s,
+            'long': boat.Geolocation__Longtitude__s,
+            'label': boat.Name
+        });
+        plotMapMarkerEvt.fire();
     }
 });
